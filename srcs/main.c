@@ -12,18 +12,22 @@ t_philo	ft_init(t_philo *philo, char **av, int ac)
 	return (*philo);
 }
 
-int	main (int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_philo	philo;
+	t_philo		philo;
+	pthread_t	newthread;
 
 	if (!(ac == 5 || ac == 6))
 	{
-		//if (ac == 5)
+		//if (ac == 6)
 		// verifier l'arg pour cette option avec un strcmp?
-		ft_error("Error : wrong number of arguments");
+		ft_print("Error : wrong number of arguments");
 		return (1);
 	}
 	philo = ft_init(&philo, av, ac);
 	printf("%d %d %d %d %d %d\n", philo.fork, philo.philo, philo.die, philo.eat, philo.sleep, philo.must_eat);
+	pthread_create(&newthread, NULL, ft_time_to_sleep, NULL);
+	ft_time_to_think();
+	pthread_join(newthread, NULL);
 	return (0);
 }

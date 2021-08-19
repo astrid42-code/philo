@@ -1,6 +1,6 @@
 NAME	=	philo
 
-SRCS	=	main.c ft_utils.c ft_error.c
+SRCS	=	main.c ft_utils.c ft_print.c ft_actions.c
 
 PATH_SRCS = srcs/
 
