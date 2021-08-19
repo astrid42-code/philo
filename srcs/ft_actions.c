@@ -2,12 +2,21 @@
 
 void	*ft_time_to_sleep(void *arg)
 {
+	int	*iptr;
+	int i;
+
 	(void)arg;
-	while (1)
+	iptr = malloc(sizeof(int));
+	*iptr = 5;
+	i = 0;
+	while (*iptr > i)
 	{
 		sleep (1);
 		ft_print("Philo is sleeping\n");
+	printf("i = %d\n", i);
+		i++;
 	}
+	free (iptr);
 	return (NULL);
 }
 

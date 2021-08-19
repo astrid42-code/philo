@@ -8,6 +8,7 @@
 
 typedef struct s_philo
 {
+	int	philo_nb;
 	int	fork;
 	int	philo;
 	int	die;
@@ -17,6 +18,7 @@ typedef struct s_philo
 }				t_philo;
 
 int		main(int ac, char **av);
+int		ft_check_arg(int ac, char **av, t_philo *philo);
 void	ft_print(char *str);
 t_philo	ft_init(t_philo *philo, char **av, int ac);
 void	*ft_time_to_sleep(void *arg);
