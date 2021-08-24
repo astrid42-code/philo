@@ -46,7 +46,9 @@ int	main(int ac, char **av)
 	int			*result;
 	t_philo		philo;
 	pthread_t	newthread;
+	pthread_mutex_t mutex;
 
+	pthread_mutex_init(&mutex, NULL);
 	if (!(ac == 5 || ac == 6))
 	{
 		//if (ac == 6)
@@ -58,10 +60,11 @@ int	main(int ac, char **av)
 	if (ft_check_arg(ac, av, &philo) == 1)
 		return (1);
 	//printf("%d %d %d %d %d %d\n", philo.fork, philo.philo, philo.die, philo.eat, philo.sleep, philo.must_eat);
-	pthread_create(&newthread, NULL, ft_time_to_sleep, NULL);
-	ft_time_to_think();
+	pthread_create(&newthread, NULL, ft_time_to_sleep, (void *)&mutex);
+	pthread_create(&newthread, NULL, ft_time_to_think, (void *)&mutex);
 	// result = malloc(sizeof(int));
 	// *result = 5;
+	pthread_join(newthread, (void *)&result);
 	pthread_join(newthread, (void *)&result);
 	return (0);
 }
