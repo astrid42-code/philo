@@ -19,12 +19,13 @@ typedef struct s_philo
 
 int		main(int ac, char **av);
 int		ft_check_arg(int ac, char **av, t_philo *philo);
-void	ft_print(char *str);
+int		ft_check_data(t_philo *philo);
 t_philo	ft_init(t_philo *philo, char **av, int ac);
 void	*ft_time_to_sleep(void *arg);
 void	*ft_time_to_think(void *arg);
 
 // utils
+void	ft_print(char *str);
 int		ft_strlen(char *str);
 int		ft_atoi(char *str);
 
