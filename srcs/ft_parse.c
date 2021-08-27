@@ -2,9 +2,15 @@
 
 int	ft_check_data(t_philo *philo)
 {
-	if (philo->philo <= 1)
+	if (philo->philo < 1)
 	{
 		ft_print("Error : there is no philosopher here!\n");
+		return (1);
+	}
+	else if (philo->philo == 1)
+	{
+		// faire mourir le philo (apres qu'il ait pris une fork?) en envoyant le msge philo dies
+		// free si necessaire ?
 		return (1);
 	}
 	else if (philo->philo > 200)
