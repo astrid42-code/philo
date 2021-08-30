@@ -8,14 +8,19 @@
 
 typedef struct s_philo
 {
-	int			l_fork;
-	int			r_fork;
-	pthread_t	philo_nb;
+	// int			l_fork;
+	// int			r_fork;
+	// pthread_t	philo_nb;
+	int				philo_nb; // id du philo
+	int				fork; // boleen : 0 = no fork / 1 = 2 forks
+	//pthread_mutex_t	fork_mutex;
+	struct s_data	*data;
 }				t_philo;
 
 typedef struct s_data
 {
-	int			nb;
+	int			turn;
+	int			nb; // nbr total de philos
 	int			die;
 	int			eat;
 	int			sleep;
@@ -24,9 +29,10 @@ typedef struct s_data
 }				t_data;
 
 int		main(int ac, char **av);
-int		ft_check_arg(int ac, char **av, t_philo *philo);
-int		ft_check_data(t_philo *philo);
-t_philo	ft_init(t_philo *philo, char **av, int ac);
+int		ft_check_arg(int ac, char **av, t_data *data);
+int		ft_check_data(t_data *data);
+int		ft_init_philo(t_philo *philo);
+int		ft_init_data(t_data *data, char **av, int ac);
 void	*ft_time_to_sleep(void *arg);
 void	*ft_time_to_think(void *arg);
 void	*ft_time_to_eat(void *mutex);

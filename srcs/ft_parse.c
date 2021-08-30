@@ -1,24 +1,24 @@
 #include "philo.h"
 
-int	ft_check_data(t_philo *philo)
+int	ft_check_data(t_data *data)
 {
-	if (philo->philo < 1)
+	if (data->nb < 1)
 	{
 		ft_print("Error : there is no philosopher here!\n");
 		return (1);
 	}
-	else if (philo->philo == 1)
+	else if (data->nb == 1)
 	{
 		// faire mourir le philo (apres qu'il ait pris une fork?) en envoyant le msge philo dies
 		// free si necessaire ?
 		return (1);
 	}
-	else if (philo->philo > 200)
+	else if (data->nb > 200)
 	{
 		ft_print("Error : there are too many philosophers here!\n");
 		return (1);
 	}
-	else if (philo->die < 60 || philo->eat < 60 || philo->sleep < 60)
+	else if (data->die < 60 || data->eat < 60 || data->sleep < 60)
 	{
 		ft_print("Error : wrong parameters\n");
 		return (1);
@@ -26,7 +26,7 @@ int	ft_check_data(t_philo *philo)
 	return (0);
 }
 
-int	ft_check_arg(int ac, char **av, t_philo *philo)
+int	ft_check_arg(int ac, char **av, t_data *data)
 {
 	int	i;
 	int	j;
@@ -46,7 +46,7 @@ int	ft_check_arg(int ac, char **av, t_philo *philo)
 		}
 		i++;
 	}
-	if (ft_check_data(philo) == 1)
+	if (ft_check_data(data) == 1)
 		return (1);
 	return (0);
 }
