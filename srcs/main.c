@@ -10,7 +10,6 @@ int	main(int ac, char**av)
 		ft_print("Error : wrong number of arguments\n");
 		return (1);
 	}
-	ft_init_data(&data, av, ac);
 	if (ft_init_data(&data, av, ac) == 1)
 	{
 		ft_free(&data);
@@ -23,14 +22,11 @@ int	main(int ac, char**av)
 		i++;
 	}
 	 printf("%d %d %d %d %d %d\n", data.turn, data.nb, data.die, data.eat, data.sleep, data.must_eat);
-	i = 0;
-	/*
-	if (data.turn == 0)
+	/* if (ft_start(&data) == 1)
 	{
-		while (i < data.nb)
-		{
-			
-		}
+		ft_free(&data);
+		ft_print("Error in threads\n");
+		return (1);
 	}
 	*/
 	return (0);

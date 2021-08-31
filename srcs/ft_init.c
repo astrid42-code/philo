@@ -31,7 +31,11 @@ int	ft_init_philo(t_data *data)
 	while (i < data->nb)
 	{
 		data->philo[i].philo_nb = i;
-		data->philo[i].fork = 0;
+		if (i % 2 != 0)
+			data->philo[i].fork = 1;
+		else
+			data->philo[i].fork = 0;
+		printf("f[%d] = %d\n", i, data->philo[i].fork);
 		//data->philo[i].l_fork = i;
 		//data->philo[i].r_fork = (i + 1) % data->nb;
 		i++;
