@@ -18,7 +18,8 @@ int	ft_check_data(t_data *data)
 		ft_print("Error : there are too many philosophers here!\n");
 		return (1);
 	}
-	else if (data->die < 60 || data->eat < 60 || data->sleep < 60)
+	else if (data->die < 60 || data->eat < 60 || data->sleep < 60
+			|| data->must_eat < 0)
 	{
 		ft_print("Error : wrong parameters\n");
 		return (1);

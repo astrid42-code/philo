@@ -3,7 +3,6 @@
 int	main(int ac, char**av)
 {
 	t_data	data;
-	t_philo	philo;
 	int		i;
 
 	if (!(ac == 5 || ac == 6))
@@ -11,11 +10,21 @@ int	main(int ac, char**av)
 		ft_print("Error : wrong number of arguments\n");
 		return (1);
 	}
-	ft_init_philo(&philo);
 	ft_init_data(&data, av, ac);
-	// printf("%d %d\n", philo.fork, philo.nb);
-	// printf("%d %d %d %d %d %d\n", data.turn, data.nb, data.die, data.eat, data.sleep, data.must_eat);
+	if (ft_init_data(&data, av, ac) == 1)
+	{
+		ft_free(&data);
+		ft_print("Error init\n");
+		return (1);
+	}
 	i = 0;
+	while (i < data.nb)
+	{ printf("%d %d\n", data.philo->fork, data.philo->philo_nb);
+		i++;
+	}
+	 printf("%d %d %d %d %d %d\n", data.turn, data.nb, data.die, data.eat, data.sleep, data.must_eat);
+	i = 0;
+	/*
 	if (data.turn == 0)
 	{
 		while (i < data.nb)
@@ -23,6 +32,7 @@ int	main(int ac, char**av)
 			
 		}
 	}
+	*/
 	return (0);
 }
 

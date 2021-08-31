@@ -16,12 +16,25 @@ int	ft_init_data(t_data *data, char **av, int ac)
 		// fct pour free l struct (si malloc)
 		return (1);
 	}
+	data->philo = malloc(sizeof(t_philo*) * data->nb);
+	if (!data->philo)
+		return (1);
+	ft_init_philo(data);
 	return (0);
 }
 
-int	ft_init_philo(t_philo *philo)
+int	ft_init_philo(t_data *data)
 {
-	philo->philo_nb = 0;
-	philo->fork = 0;
+	int i;
+
+	i = 0;
+	while (i < data->nb)
+	{
+		data->philo[i].philo_nb = i;
+		data->philo[i].fork = 0;
+		//data->philo[i].l_fork = i;
+		//data->philo[i].r_fork = (i + 1) % data->nb;
+		i++;
+	}
 	return (0);
 }

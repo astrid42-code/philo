@@ -35,3 +35,15 @@ int	ft_atoi(char *str)
 	}
 	return (result * sign);
 }
+
+void	ft_free(t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (i < data->nb)
+	{
+		free(data->philo);
+		i++;
+	}
+}
