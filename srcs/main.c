@@ -18,7 +18,7 @@ int	main(int ac, char**av)
 	}
 	i = 0;
 	while (i < data.nb)
-	{ printf("%d %d\n", data.philo->fork, data.philo->philo_nb);
+	{ printf("p[%d] = %d %d\n", i, data.philo[i].fork, data.philo[i].philo_nb);
 		i++;
 	}
 	 printf("%d %d %d %d %d %d\n", data.turn, data.nb, data.die, data.eat, data.sleep, data.must_eat);

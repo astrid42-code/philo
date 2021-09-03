@@ -33,7 +33,8 @@ typedef struct s_data
 int		main(int ac, char **av);
 int		ft_check_arg(int ac, char **av, t_data *data);
 int		ft_check_data(t_data *data);
-int		ft_init_philo(t_data *data);
+//t_data	*ft_init_philo(t_data *data, int i);
+void	ft_init_philo(t_data *data);
 int		ft_init_data(t_data *data, char **av, int ac);
 void	*ft_time_to_sleep(void *arg);
 void	*ft_time_to_think(void *arg);

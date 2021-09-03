@@ -2,8 +2,12 @@
 
 int	ft_init_data(t_data *data, char **av, int ac)
 {
+	//t_philo philo;
+	//int i;
+
 	data->turn = 0;
 	data->nb = ft_atoi(av[1]);
+	//printf("nb = %d\n", data->nb);
 	data->die = ft_atoi(av[2]);
 	data->eat = ft_atoi(av[3]);
 	data->sleep = ft_atoi(av[4]);
@@ -23,11 +27,13 @@ int	ft_init_data(t_data *data, char **av, int ac)
 	return (0);
 }
 
-int	ft_init_philo(t_data *data)
+//t_data	*ft_init_philo(t_data *data, int i)
+void	ft_init_philo(t_data *data)
 {
 	int i;
 
 	i = 0;
+	//printf("nb = %d\n", philo->data->nb);
 	while (i < data->nb)
 	{
 		data->philo[i].philo_nb = i;
@@ -35,10 +41,9 @@ int	ft_init_philo(t_data *data)
 			data->philo[i].fork = 1;
 		else
 			data->philo[i].fork = 0;
-		printf("f[%d] = %d\n", i, data->philo[i].fork);
 		//data->philo[i].l_fork = i;
 		//data->philo[i].r_fork = (i + 1) % data->nb;
 		i++;
 	}
-	return (0);
+	//return (data);
 }
