@@ -2,12 +2,8 @@
 
 int	ft_init_data(t_data *data, char **av, int ac)
 {
-	//t_philo philo;
-	//int i;
-
 	data->turn = 0;
 	data->nb = ft_atoi(av[1]);
-	//printf("nb = %d\n", data->nb);
 	data->die = ft_atoi(av[2]);
 	data->eat = ft_atoi(av[3]);
 	data->sleep = ft_atoi(av[4]);
@@ -27,7 +23,6 @@ int	ft_init_data(t_data *data, char **av, int ac)
 	return (0);
 }
 
-//t_data	*ft_init_philo(t_data *data, int i)
 void	ft_init_philo(t_data *data)
 {
 	int i;
