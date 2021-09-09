@@ -36,10 +36,6 @@ int	ft_init_philo(t_data *data)
 	{
 		data->philo[i].philo_nb = i;
 		// if (!data->philo[i]) return (1); ?
-		/*if (i % 2 != 0)
-			data->philo[i].fork = 1;
-		else
-			data->philo[i].fork = 0;*/
 		data->philo[i].l_fork = i;
 		data->philo[i].r_fork = (i + 1) % data->nb;
 		i++;
@@ -52,7 +48,7 @@ int	ft_init_mutex(t_data *data)
 	int	i;
 
 	i = 0;
-	printf("nb = %d\n", data->nb);
+	//printf("nb = %d\n", data->nb);
 	while (i < data->nb)
 	{
 		//pthread_mutex_init(&(data->philo->fork_mutex[i]), NULL);
