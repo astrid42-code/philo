@@ -43,24 +43,15 @@ void	*ft_time_to_think(void *mutex)
 	return (NULL);
 }
 
-void	*ft_time_to_eat(void *mutex)
+void	*ft_time_to_eat(t_philo *philo, t_data *data)
 {
-	int	*zptr;
-	int	z;
-
-	zptr = malloc(sizeof(int));
-	*zptr = 10;
-	z = 0;
-	while (*zptr > z)
-	{
-		pthread_mutex_lock(mutex);
-		//printf("Philo%d takes fork\n", philo_nb);
-		ft_print("Philo is eating\n");
-		printf("z = %d\n", z);
-		pthread_mutex_unlock(mutex);
-		usleep (100000);
-		z++;
-	}
-	free (zptr);
+	(void)data;
+	pthread_mutex_lock(&(philo->fork_mutex[philo->l_fork]));
+	ft_print_action(philo, "takes left fork");
+	pthread_mutex_lock(&(philo->fork_mutex[philo->r_fork]));
+	ft_print_action(philo, "takes right fork");
+	ft_print_action(philo, "is eating");
+	pthread_mutex_unlock(&(philo->fork_mutex[philo->l_fork]));
+	pthread_mutex_unlock(&(philo->fork_mutex[philo->r_fork]));
 	return (NULL);
 }

@@ -19,12 +19,14 @@ int	ft_init_data(t_data *data, char **av, int ac)
 	data->philo = malloc(sizeof(t_philo*) * data->nb);
 	if (!data->philo)
 		return (1);
-	ft_init_philo(data);
-	ft_init_mutex(data);
+	if (ft_init_philo(data) == 1)
+		return (1);
+	if (ft_init_mutex(data) == 1)
+		return (1);
 	return (0);
 }
 
-void	ft_init_philo(t_data *data)
+int	ft_init_philo(t_data *data)
 {
 	int i;
 
@@ -33,6 +35,7 @@ void	ft_init_philo(t_data *data)
 	while (i < data->nb)
 	{
 		data->philo[i].philo_nb = i;
+		// if (!data->philo[i]) return (1); ?
 		/*if (i % 2 != 0)
 			data->philo[i].fork = 1;
 		else
@@ -41,7 +44,7 @@ void	ft_init_philo(t_data *data)
 		data->philo[i].r_fork = (i + 1) % data->nb;
 		i++;
 	}
-	//return (data);
+	return (0);
 }
 
 int	ft_init_mutex(t_data *data)
@@ -49,10 +52,15 @@ int	ft_init_mutex(t_data *data)
 	int	i;
 
 	i = 0;
+	printf("nb = %d\n", data->nb);
 	while (i < data->nb)
 	{
+		//pthread_mutex_init(&(data->philo->fork_mutex[i]), NULL);
 		if (pthread_mutex_init(&(data->philo->fork_mutex[i]), NULL))
+		{
+			ft_print("Error in mutex\n");
 			return (1);
+		}
 		i++;
 	}
 	//if (pthread_mutex_init(&(data->philo.write), NULL))

@@ -13,7 +13,7 @@ int	main(int ac, char**av)
 	if (ft_init_data(&data, av, ac) == 1)
 	{
 		ft_free(&data);
-		ft_print("Error init\n");
+		//ft_print("Error init\n");
 		return (1);
 	}
 	i = 0;
