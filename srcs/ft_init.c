@@ -20,6 +20,7 @@ int	ft_init_data(t_data *data, char **av, int ac)
 	if (!data->philo)
 		return (1);
 	ft_init_philo(data);
+	ft_init_mutex(data);
 	return (0);
 }
 
@@ -32,13 +33,31 @@ void	ft_init_philo(t_data *data)
 	while (i < data->nb)
 	{
 		data->philo[i].philo_nb = i;
-		if (i % 2 != 0)
+		/*if (i % 2 != 0)
 			data->philo[i].fork = 1;
 		else
-			data->philo[i].fork = 0;
-		//data->philo[i].l_fork = i;
-		//data->philo[i].r_fork = (i + 1) % data->nb;
+			data->philo[i].fork = 0;*/
+		data->philo[i].l_fork = i;
+		data->philo[i].r_fork = (i + 1) % data->nb;
 		i++;
 	}
 	//return (data);
+}
+
+int	ft_init_mutex(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->nb)
+	{
+		if (pthread_mutex_init(&(data->philo->fork_mutex[i]), NULL))
+			return (1);
+		i++;
+	}
+	//if (pthread_mutex_init(&(data->philo.write), NULL))
+    //	return (1);
+    //if (pthread_mutex_init(&(rules->meal_check), NULL))
+    //  return (1);
+	return (0);
 }

@@ -54,8 +54,9 @@ void	*ft_time_to_eat(void *mutex)
 	while (*zptr > z)
 	{
 		pthread_mutex_lock(mutex);
-		ft_print("Philo is thinking\n");
-		printf("j = %d\n", z);
+		//printf("Philo%d takes fork\n", philo_nb);
+		ft_print("Philo is eating\n");
+		printf("z = %d\n", z);
 		pthread_mutex_unlock(mutex);
 		usleep (100000);
 		z++;

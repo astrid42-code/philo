@@ -17,18 +17,18 @@ int	main(int ac, char**av)
 		return (1);
 	}
 	i = 0;
-	while (i < data.nb)
-	{ printf("p[%d] = %d %d\n", i, data.philo[i].fork, data.philo[i].philo_nb);
+	/*while (i < data.nb)
+	{ printf("p[%d] = %d %d\n", i, data.philo[i].l_fork, data.philo[i].r_fork);
 		i++;
 	}
-	 printf("%d %d %d %d %d %d\n", data.turn, data.nb, data.die, data.eat, data.sleep, data.must_eat);
-	/* if (ft_start(&data) == 1)
+	 printf("%d %d %d %d %d %d\n", data.turn, data.nb, data.die, data.eat, data.sleep, data.must_eat);*/
+	if (ft_start(&data) == 1)
 	{
 		ft_free(&data);
 		ft_print("Error in threads\n");
 		return (1);
 	}
-	*/
+	
 	return (0);
 }
 

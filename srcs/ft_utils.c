@@ -38,7 +38,7 @@ int	ft_atoi(char *str)
 
 void	ft_free(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->nb)

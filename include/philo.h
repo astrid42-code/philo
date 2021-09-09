@@ -8,14 +8,13 @@
 
 typedef struct s_philo
 {
-	// int			l_fork;
-	// int			r_fork;
-	// pthread_t	philo_nb;
+	int				l_fork;
+	int				r_fork;
 	int				philo_nb; // id du philo
-	int				fork;
-	//int				l_fork;
-	//int				r_fork;
-	//pthread_mutex_t	fork_mutex;
+	//int				fork;
+	pthread_t		philo;
+	pthread_mutex_t	*fork_mutex;
+	//pthread_mutex_t	write
 	struct s_data	*data;
 }				t_philo;
 
@@ -35,6 +34,9 @@ int		ft_check_arg(int ac, char **av, t_data *data);
 int		ft_check_data(t_data *data);
 void	ft_init_philo(t_data *data);
 int		ft_init_data(t_data *data, char **av, int ac);
+int		ft_init_mutex(t_data *data);
+int		ft_start(t_data *data);
+void	ft_routine1(t_data *data);
 void	*ft_time_to_sleep(void *arg);
 void	*ft_time_to_think(void *arg);
 void	*ft_time_to_eat(void *mutex);
