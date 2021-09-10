@@ -13,7 +13,7 @@ typedef struct s_philo
 	int				philo_nb; // id du philo
 	//int				fork;
 	pthread_t		philo;
-	pthread_mutex_t	fork_mutex[200];
+	pthread_mutex_t	*fork_mutex;
 	//pthread_mutex_t	write
 	struct s_data	*data;
 }				t_philo;
@@ -39,7 +39,7 @@ void	*ft_time_to_think(void *arg);
 void	*ft_time_to_eat(t_philo *philo, t_data *data);
 
 // init
-int		ft_init_philo(t_data *data);
+void		ft_init_philo(t_data *data);
 int		ft_init_data(t_data *data, char **av, int ac);
 int		ft_init_mutex(t_data *data);
 

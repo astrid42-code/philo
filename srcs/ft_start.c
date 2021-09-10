@@ -8,6 +8,9 @@ int	ft_start(t_data *data)
 
 	i = 0;
 	philo = data->philo;
+	
+	// if (philo->philo_nb % 2 == 0)
+	// 	usleep(1000);
 	if (data->turn == 0)
 	{
 		while (i < data->nb)

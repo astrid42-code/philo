@@ -20,7 +20,7 @@ OBJS	=	${addprefix ${PATH_SRCS}, ${SRCS:.c=.o}}
 CC		=	clang
 #clang-9 
 RM		=	rm -f
-CFLAGS	=	-Wall -Werror -Wextra 
+CFLAGS	=	-Wall -Werror -Wextra -g3 -fsanitize=address
 
 
 INCL	=	include
