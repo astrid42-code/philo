@@ -42,7 +42,7 @@ void	*ft_time_to_think(void *mutex)
 	free (jptr);
 	return (NULL);
 }
-
+/*
 void	*ft_time_to_eat(t_philo *philo, t_data *data)
 {
 	(void)data;
@@ -53,5 +53,19 @@ void	*ft_time_to_eat(t_philo *philo, t_data *data)
 	ft_print_action(philo, "is eating");
 	pthread_mutex_unlock(&(philo->fork_mutex[philo->l_fork]));
 	pthread_mutex_unlock(&(philo->fork_mutex[philo->r_fork]));
+	return (NULL);
+}
+*/
+
+void	*ft_time_to_eat(t_philo *philo, t_data *data)
+{
+	(void)data;
+	pthread_mutex_lock(philo->left_f);
+	ft_print_action(philo, "takes left fork");
+	pthread_mutex_lock(philo->right_f);
+	ft_print_action(philo, "takes right fork");
+	ft_print_action(philo, "is eating");
+	pthread_mutex_unlock(philo->left_f);
+	pthread_mutex_unlock(philo->right_f);
 	return (NULL);
 }

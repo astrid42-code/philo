@@ -10,7 +10,7 @@ int	ft_start(t_data *data)
 	philo = data->philo;
 	
 	// if (philo->philo_nb % 2 == 0)
-	// 	usleep(1000);
+	// 	usleep(1000000);
 	if (data->turn == 0)
 	{
 		while (i < data->nb)
@@ -23,16 +23,31 @@ int	ft_start(t_data *data)
 			}
 			i++;
 		}
+		//puts("che");
 		data->turn++;
 	}
 	i = 0;
-	while (i < data->nb)
+	//while (i < data->nb)
+	while (1)
 	{
 	//printf("i = %d\n", i);
 		if (pthread_create(&(philo[i].philo), NULL, ft_routine1, &(philo[i])))
             return (1);
 		i++;
 	}
+	i = 0;
+	while (i < data->nb)
+    //while (1)
+	{    
+		pthread_join(philo[i].philo, NULL);
+        i++;
+	}
+	/*
+	i = 0;
+    while (i < data->philo_nb)
+        pthread_mutex_destroy(&(data->fork[i]));
+    pthread_mutex_destroy(&(data->write));
+	*/
 	//ft_exit(data, philo);
 	return (0);
 }

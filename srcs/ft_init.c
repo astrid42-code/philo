@@ -1,5 +1,6 @@
 #include "philo.h"
 
+
 int	ft_init_data(t_data *data, char **av, int ac)
 {
 	data->turn = 0;
@@ -30,7 +31,7 @@ int	ft_init_data(t_data *data, char **av, int ac)
 
 void	ft_init_philo(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	//printf("nb = %d\n", philo->data->nb);
@@ -38,8 +39,8 @@ void	ft_init_philo(t_data *data)
 	{
 		data->philo[i].philo_nb = i;
 		// if (!data->philo[i]) return (1); ?
-		data->philo[i].l_fork = i;
-		data->philo[i].r_fork = (i + 1) % data->nb;
+		// data->philo[i].l_fork = i;
+		// data->philo[i].r_fork = (i + 1) % data->nb;
 		i++;
 	}
 	//return (0);
@@ -54,13 +55,19 @@ int	ft_init_mutex(t_data *data)
 	
 	while (i < data->nb)
 	{
-		data->philo[i].fork_mutex = malloc(sizeof(pthread_mutex_t));
+		data->philo[i].left_f = malloc(sizeof(pthread_mutex_t));
 		//pthread_mutex_init(&(data->philo->fork_mutex[i]), NULL);
-		if (pthread_mutex_init(data->philo[i].fork_mutex, NULL))
+		if (pthread_mutex_init(data->philo[i].left_f, NULL))
 		{
 			ft_print("Error in mutex\n");
 			return (1);
 		}
+		i++;
+	}
+	i = 0;
+	while (i < data->nb)
+	{
+		data->philo[i].right_f = (data->philo[(i + 1) % data->nb].left_f);
 		i++;
 	}
 	return (0);

@@ -8,13 +8,14 @@
 
 typedef struct s_philo
 {
-	int				l_fork;
-	int				r_fork;
+	// int				l_fork;
+	// int				r_fork;
+	pthread_mutex_t	*left_f; // mutex a malloc
+	pthread_mutex_t	*right_f; //initialiser au left fork de philo + 1
 	int				philo_nb; // id du philo
-	//int				fork;
 	pthread_t		philo;
-	pthread_mutex_t	*fork_mutex;
-	//pthread_mutex_t	write
+	//pthread_mutex_t	*fork_mutex;
+	//pthread_mutex_t	*write // malloc 1 fois ( tjrs le meme ptr pour pvr ecrire safe)
 	struct s_data	*data;
 }				t_philo;
 
