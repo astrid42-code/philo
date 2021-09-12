@@ -34,10 +34,12 @@ void	ft_init_philo(t_data *data)
 	int	i;
 
 	i = 0;
+	//gettimeofday(&data->philo[i].phitime, NULL);
 	//printf("nb = %d\n", philo->data->nb);
 	while (i < data->nb)
 	{
 		data->philo[i].philo_nb = i;
+		//data->philo[i].phitime = NULL;
 		// if (!data->philo[i]) return (1); ?
 		// data->philo[i].l_fork = i;
 		// data->philo[i].r_fork = (i + 1) % data->nb;

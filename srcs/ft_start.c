@@ -27,12 +27,13 @@ int	ft_start(t_data *data)
 		data->turn++;
 	}
 	i = 0;
-	//while (i < data->nb)
-	while (1)
+	while (i < data->nb)
+	//while (1)
 	{
 	//printf("i = %d\n", i);
 		if (pthread_create(&(philo[i].philo), NULL, ft_routine1, &(philo[i])))
             return (1);
+		//printf("i = %d\n", i);
 		i++;
 	}
 	i = 0;
