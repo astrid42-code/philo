@@ -18,14 +18,16 @@ int	ft_init_data(t_data *data, char **av, int ac)
 		return (1);
 	}
 	data->philo = malloc(sizeof(t_philo) * data->nb);
-	// faire malloc des mutex
 	if (!data->philo)
+	{puts("che");
 		return (1);
+	}
 	// if (ft_init_philo(data) == 1)
 	// 	return (1);
 	ft_init_philo(data);
 	if (ft_init_mutex(data) == 1)
 		return (1);
+	ft_init_thread(data);
 	return (0);
 }
 
@@ -39,6 +41,7 @@ void	ft_init_philo(t_data *data)
 	while (i < data->nb)
 	{
 		data->philo[i].philo_nb = i;
+		pthread_create(&data->philo[i].philo, NULL, ft_routine1, &data->philo[i]);
 		//data->philo[i].phitime = NULL;
 		// if (!data->philo[i]) return (1); ?
 		// data->philo[i].l_fork = i;
@@ -73,4 +76,20 @@ int	ft_init_mutex(t_data *data)
 		i++;
 	}
 	return (0);
+}
+
+void	ft_init_thread(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->nb)
+	{
+		pthread_create(&data->philo[i].philo, NULL, ft_routine1, &data->philo[i]);
+		//data->philo[i].phitime = NULL;
+		// if (!data->philo[i]) return (1); ?
+		// data->philo[i].l_fork = i;
+		// data->philo[i].r_fork = (i + 1) % data->nb;
+		i++;
+	}
 }
