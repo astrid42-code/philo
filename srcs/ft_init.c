@@ -16,7 +16,7 @@ int	ft_init_data(t_data *data, char **av, int ac)
 	{
 		// fct pour free l struct (si malloc)
 		return (1);
-	}
+	}	
 	data->philo = malloc(sizeof(t_philo) * data->nb);
 	if (!data->philo)
 	{puts("che");
@@ -41,7 +41,7 @@ void	ft_init_philo(t_data *data)
 	while (i < data->nb)
 	{
 		data->philo[i].philo_nb = i;
-		pthread_create(&data->philo[i].philo, NULL, ft_routine1, &data->philo[i]);
+		pthread_create(&data->philo[i].philo, NULL, ft_routine1, (void*)&data->philo[i]);
 		//data->philo[i].phitime = NULL;
 		// if (!data->philo[i]) return (1); ?
 		// data->philo[i].l_fork = i;
