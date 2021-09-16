@@ -22,13 +22,13 @@ int	main(int ac, char**av)
 		i++;
 	}
 	 printf("%d %d %d %d %d %d\n", data.turn, data.nb, data.die, data.eat, data.sleep, data.must_eat);*/
-	if (ft_start(&data) == 1)
+/*	if (ft_start(&data) == 1)
 	{
 		ft_free(&data);
 		ft_print("Error in threads\n");
 		return (1);
 	}
-	
+*/	
 	return (0);
 }
 
