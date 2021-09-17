@@ -39,6 +39,7 @@ void	*ft_routine1(void *philo);
 void	*ft_time_to_sleep(void *arg);
 void	*ft_time_to_think(void *arg);
 void	*ft_time_to_eat(t_philo *philo, t_data *data);
+void	ft_join_thread(t_data *data);
 
 // init
 void		ft_init_philo(t_data *data);

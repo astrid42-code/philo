@@ -1,6 +1,5 @@
 #include "philo.h"
 
-
 int	ft_init_data(t_data *data, char **av, int ac)
 {
 	data->turn = 0;
@@ -45,7 +44,26 @@ void	ft_init_philo(t_data *data)
             return ;
 		i++;
 	}
+	//while(1); // while != de fin de simulation (fin de si;ul = un philo meurt ou ils ont mange tous leurs repas) > permet 
+/*	while(1) 
+	{
+		usleep (200)
+		verifier si fin de simul (dans les deux cas : si fin, break)
+	}  
+*/	ft_join_thread(data);
 	//return (0);
+}
+
+void	ft_join_thread(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->nb)
+	{
+		 pthread_join(data->philo[i].philo, NULL);
+		 i++;
+	}
 }
 
 int	ft_init_mutex(t_data *data)
@@ -54,7 +72,6 @@ int	ft_init_mutex(t_data *data)
 
 	i = 0;
 	//printf("nb = %d\n", data->nb);
-	
 	while (i < data->nb)
 	{
 		data->philo[i].left_f = malloc(sizeof(pthread_mutex_t));

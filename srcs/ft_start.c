@@ -60,8 +60,9 @@ void	*ft_routine1(void *philo)
 	t_data	*data;
 
 	i = 0;
-	//puts("che");
 	philo_cp = (t_philo *)philo;
+	if (philo_cp->philo_nb % 2 == 0)
+		usleep(1000);
 	data = philo_cp->data;
 	ft_time_to_eat(philo_cp, data);
 	return (NULL);
