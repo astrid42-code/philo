@@ -31,8 +31,10 @@ int	ft_init_data(t_data *data, char **av, int ac)
 void	ft_init_philo(t_data *data)
 {
 	int	i;
+	t_philo	*philo_cp;	
 
 	i = 0;
+	philo_cp = (t_philo *)data;
 	//gettimeofday(&data->philo[i].phitime, NULL);
 	//printf("nb = %d\n", philo->data->nb);
 	while (i < data->nb)
@@ -44,18 +46,29 @@ void	ft_init_philo(t_data *data)
             return ;
 		i++;
 	}
-	//while(1); // while != de fin de simulation (fin de si;ul = un philo meurt ou ils ont mange tous leurs repas) > permet 
-	while (1) 
+	i = 0;
+	while (1)
 	{
-		usleep (200);
-		//verifier si fin de simul (dans les deux cas : si fin, break)
+		usleep (2000); // a mettre a 200
+		ft_routine1(&data->philo[i]);
 		if (data->must_eat != 0)
 		{
 			ft_must_eat(data);
 			break;
 		}
-	}  
-	ft_join_thread(data);
+		i++;
+		if (i == data->nb)
+			i = 0;
+	}
+	//while(1); // while != de fin de simulation (fin de si;ul = un philo meurt ou ils ont mange tous leurs repas) > permet 
+/*	printf("i = %d\n", i);
+	while (1)
+	{
+		usleep (200);
+		//verifier si fin de simul (dans les deux cas : si fin, break)
+		ft_time_to_eat(philo_cp, data);
+	}
+*/	ft_join_thread(data);
 	//return (0);
 }
 
