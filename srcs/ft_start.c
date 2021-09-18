@@ -11,7 +11,6 @@ int	ft_start(t_data *data)
 	
 	// if (philo->philo_nb % 2 == 0)
 	// 	usleep(1000000);
-	if (data->turn == 0)
 	{
 		while (i < data->nb)
 		{
@@ -24,7 +23,6 @@ int	ft_start(t_data *data)
 			i++;
 		}
 		//puts("che");
-		data->turn++;
 	}
 	i = 0;
 	while (i < data->nb)

@@ -22,7 +22,7 @@ typedef struct s_philo
 
 typedef struct s_data
 {
-	int			turn;
+	int			count;
 	int			nb; // nbr total de philos
 	int			die;
 	int			eat;
@@ -39,6 +39,7 @@ void	*ft_routine1(void *philo);
 void	*ft_time_to_sleep(void *arg);
 void	*ft_time_to_think(void *arg);
 void	*ft_time_to_eat(t_philo *philo, t_data *data);
+void	ft_must_eat(t_data *data);
 void	ft_join_thread(t_data *data);
 
 // init

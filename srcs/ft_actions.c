@@ -56,6 +56,24 @@ void	*ft_time_to_eat(t_philo *philo, t_data *data)
 	return (NULL);
 }
 */
+// fait manger les philos le bon nbre de fois MAIS
+// dans l'ordre, pas par rapport aux mutex ou thread
+// où/comment lancer la routine? faire qu'elle continue tq on n'a pas fini le nbr de must eat (ou a l'infini)
+void	ft_must_eat(t_data *data)
+{
+	int	i;
+
+	while (data->count < data->must_eat)
+	{	//printf("count = %d\n", data->count);
+		i = 0;
+		while (i < data->nb)
+		{
+			ft_routine1(&data->philo[i]);;
+			i++;
+		}
+		data->count++;
+	}
+}
 
 void	*ft_time_to_eat(t_philo *philo, t_data *data)
 {

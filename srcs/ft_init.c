@@ -2,7 +2,7 @@
 
 int	ft_init_data(t_data *data, char **av, int ac)
 {
-	data->turn = 0;
+	data->count = 1;
 	data->nb = ft_atoi(av[1]);
 	data->die = ft_atoi(av[2]);
 	data->eat = ft_atoi(av[3]);
@@ -45,12 +45,17 @@ void	ft_init_philo(t_data *data)
 		i++;
 	}
 	//while(1); // while != de fin de simulation (fin de si;ul = un philo meurt ou ils ont mange tous leurs repas) > permet 
-/*	while(1) 
+	while (1) 
 	{
-		usleep (200)
-		verifier si fin de simul (dans les deux cas : si fin, break)
+		usleep (200);
+		//verifier si fin de simul (dans les deux cas : si fin, break)
+		if (data->must_eat != 0)
+		{
+			ft_must_eat(data);
+			break;
+		}
 	}  
-*/	ft_join_thread(data);
+	ft_join_thread(data);
 	//return (0);
 }
 
