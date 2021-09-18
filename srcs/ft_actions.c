@@ -68,6 +68,8 @@ void	ft_must_eat(t_data *data)
 		i = 0;
 		while (i < data->nb)
 		{
+			//if (data->philo[i].philo_nb % 2 == 0)
+			//	usleep (2000); // a mettre a 200
 			ft_routine1(&data->philo[i]);;
 			i++;
 		}

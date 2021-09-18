@@ -47,9 +47,10 @@ void	ft_init_philo(t_data *data)
 		i++;
 	}
 	i = 0;
-	while (1)
+/*	while (1)
 	{
-		usleep (2000); // a mettre a 200
+		if (data->philo[i].philo_nb % 2 == 0)
+			usleep (2000); // a mettre a 200
 		ft_routine1(&data->philo[i]);
 		if (data->must_eat != 0)
 		{
@@ -61,7 +62,7 @@ void	ft_init_philo(t_data *data)
 			i = 0;
 	}
 	//while(1); // while != de fin de simulation (fin de si;ul = un philo meurt ou ils ont mange tous leurs repas) > permet 
-/*	printf("i = %d\n", i);
+	printf("i = %d\n", i);
 	while (1)
 	{
 		usleep (200);

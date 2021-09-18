@@ -51,6 +51,8 @@ int	ft_start(t_data *data)
 	return (0);
 }
 
+// part en infini mais bloque quand ils prennent tous leur fourchette gche
+// dc pb de mutex de merde
 void	*ft_routine1(void *philo)
 {
 	int		i;
@@ -59,9 +61,14 @@ void	*ft_routine1(void *philo)
 
 	i = 0;
 	philo_cp = (t_philo *)philo;
-	if (philo_cp->philo_nb % 2 == 0)
-		usleep(1000);
 	data = philo_cp->data;
-	ft_time_to_eat(philo_cp, data);
+	if (philo_cp->philo_nb % 2 == 0)
+		usleep(100000);
+	while (1)
+	{
+		ft_time_to_eat(philo_cp, data);
+		i++;
+	}
+	//ft_time_to_eat(philo_cp, data);
 	return (NULL);
 }
