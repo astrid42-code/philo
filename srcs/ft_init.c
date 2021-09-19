@@ -3,7 +3,7 @@
 int	ft_init_data(t_data *data, char **av, int ac)
 {
 	data->count = 1;
-	data->nb = ft_atoi(av[1]);
+	data->nb = ft_atoi(av[1]) + 1;
 	data->die = ft_atoi(av[2]);
 	data->eat = ft_atoi(av[3]);
 	data->sleep = ft_atoi(av[4]);
@@ -33,7 +33,7 @@ void	ft_init_philo(t_data *data)
 	int	i;
 	t_philo	*philo_cp;	
 
-	i = 0;
+	i = 1;
 	philo_cp = (t_philo *)data;
 	//gettimeofday(&data->philo[i].phitime, NULL);
 	//printf("nb = %d\n", philo->data->nb);
