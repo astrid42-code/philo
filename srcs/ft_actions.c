@@ -80,12 +80,12 @@ void	ft_must_eat(t_data *data)
 void	*ft_time_to_eat(t_philo *philo, t_data *data)
 {
 	//puts ("che");
-	(void)data;
+	//(void)data;
 	pthread_mutex_lock(philo->left_f);
-	ft_print_action(philo, "has taken a (left) fork");
+	ft_print_action(philo, data, "has taken a (left) fork");
 	pthread_mutex_lock(philo->right_f);
-	ft_print_action(philo, "has taken a (right) fork");
-	ft_print_action(philo, "is eating");
+	ft_print_action(philo, data, "has taken a (right) fork");
+	ft_print_action(philo, data, "is eating");
 	pthread_mutex_unlock(philo->left_f);
 	pthread_mutex_unlock(philo->right_f);
 	usleep(100);

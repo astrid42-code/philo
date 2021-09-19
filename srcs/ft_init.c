@@ -108,5 +108,11 @@ int	ft_init_mutex(t_data *data)
 		data->philo[i].right_f = (data->philo[(i + 1) % data->nb].left_f);
 		i++;
 	}
+	data->write = malloc(sizeof(pthread_mutex_t));
+	if (pthread_mutex_init(data->write, NULL))
+	{
+		ft_print("Error in mutex\n");
+		return (1);
+	}
 	return (0);
 }

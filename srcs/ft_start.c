@@ -53,6 +53,7 @@ int	ft_start(t_data *data)
 
 // part en infini mais bloque quand ils prennent tous leur fourchette gche
 // dc pb de mutex de merde
+// autre pb : les philos impairs mangent plein de fois d'affilee au debut
 void	*ft_routine1(void *philo)
 {
 	int		i;
@@ -63,11 +64,21 @@ void	*ft_routine1(void *philo)
 	philo_cp = (t_philo *)philo;
 	data = philo_cp->data;
 	if (philo_cp->philo_nb % 2 == 0)
-		usleep(100000);
+		usleep(1000);
 	while (1)
 	{
 		ft_time_to_eat(philo_cp, data);
-		i++;
+		//usleep(1000);
+/*		printf("m = %d\n", data->must_eat);
+		// data->count : a mettre en fait dans les philos? des qu'un philo mange, son compteur augmente jusqu a arriver a la limite definie?
+		if (data->must_eat != 0)
+		{
+			printf("count = %d\n", data->count);
+			if (data->count == data->must_eat)
+				break;
+			data->count++;
+		}
+*/	
 	}
 	//ft_time_to_eat(philo_cp, data);
 	return (NULL);

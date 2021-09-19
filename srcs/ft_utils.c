@@ -47,3 +47,23 @@ void	ft_free(t_data *data)
 		i++;
 	}
 }
+
+int	ft_nbrsize(int nbr)
+{
+	int	count;
+	int	tmp;
+
+	count = 0;
+	tmp = nbr;
+	if (nbr == 0)
+	{
+		count++;
+		return (count);
+	}
+	while (nbr > 0)
+	{
+		tmp /= 10;
+		count++;
+	}
+	return (count);
+}
