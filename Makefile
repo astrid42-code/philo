@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/09/19 15:27:57 by asgaulti          #+#    #+#              #
+#    Updated: 2021/09/19 15:34:57 by asgaulti         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME	=	philo
 
 # Colors
@@ -11,7 +23,7 @@ CYAN = $'\x1b[36m
 WHITE = $'\x1b[37m
 
 SRCS	=	main.c ft_utils.c ft_print.c ft_actions.c ft_parse.c \
-			ft_init.c ft_start.c
+			ft_init.c ft_start.c ft_exit.c 
 
 PATH_SRCS = srcs/
 
@@ -20,7 +32,7 @@ OBJS	=	${addprefix ${PATH_SRCS}, ${SRCS:.c=.o}}
 CC		=	clang
 #clang-9 
 RM		=	rm -f
-CFLAGS	=	-Wall -Werror -Wextra #-g3 -fsanitize=address
+CFLAGS	=	-Wall -Werror -Wextra -g3 -fsanitize=address
 
 
 INCL	=	include

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_init.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/19 15:27:35 by asgaulti          #+#    #+#             */
+/*   Updated: 2021/09/19 15:40:30 by asgaulti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	ft_init_data(t_data *data, char **av, int ac)
@@ -30,10 +42,8 @@ int	ft_init_data(t_data *data, char **av, int ac)
 void	ft_init_philo(t_data *data)
 {
 	int	i;
-	//t_philo	*philo_cp;
 
 	i = 1;
-	//philo_cp = (t_philo *)data;
 	//gettimeofday(&data->philo[i].phitime, NULL);
 	//printf("nb = %d\n", philo->data->nb);
 	while (i < data->nb)
@@ -48,42 +58,7 @@ void	ft_init_philo(t_data *data)
 		i++;
 	}
 	i = 0;
-/*	while (1)
-	{
-		if (data->philo[i].philo_nb % 2 == 0)
-			usleep (2000); // a mettre a 200
-		ft_routine1(&data->philo[i]);
-		if (data->must_eat != 0)
-		{
-			ft_must_eat(data);
-			break;
-		}
-		i++;
-		if (i == data->nb)
-			i = 0;
-	}
-	//while(1); // while != de fin de simulation (fin de si;ul = un philo meurt ou ils ont mange tous leurs repas) > permet 
-	printf("i = %d\n", i);
-	while (1)
-	{
-		usleep (200);
-		//verifier si fin de simul (dans les deux cas : si fin, break)
-		ft_time_to_eat(philo_cp, data);
-	}
-*/	ft_join_thread(data);
-	//return (0);
-}
-
-void	ft_join_thread(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->nb)
-	{
-		 pthread_join(data->philo[i].philo_thread, NULL);
-		 i++;
-	}
+	ft_exit(data); // ou dans routine??
 }
 
 int	ft_init_mutex(t_data *data)
@@ -91,11 +66,9 @@ int	ft_init_mutex(t_data *data)
 	int	i;
 
 	i = 0;
-	//printf("nb = %d\n", data->nb);
 	while (i < data->nb)
 	{
 		data->philo[i].left_f = malloc(sizeof(pthread_mutex_t));
-		//pthread_mutex_init(&(data->philo->fork_mutex[i]), NULL);
 		if (pthread_mutex_init(data->philo[i].left_f, NULL))
 		{
 			ft_print("Error in mutex\n");
@@ -103,12 +76,7 @@ int	ft_init_mutex(t_data *data)
 		}
 		i++;
 	}
-	i = 0;
-	while (i < data->nb)
-	{
-		data->philo[i].right_f = (data->philo[(i + 1) % data->nb].left_f);
-		i++;
-	}
+	ft_init_mutex_rfork(data);
 	data->write = malloc(sizeof(pthread_mutex_t));
 	if (pthread_mutex_init(data->write, NULL))
 	{
@@ -116,4 +84,16 @@ int	ft_init_mutex(t_data *data)
 		return (1);
 	}
 	return (0);
+}
+
+void	ft_init_mutex_rfork(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->nb)
+	{
+		data->philo[i].right_f = (data->philo[(i + 1) % data->nb].left_f);
+		i++;
+	}
 }

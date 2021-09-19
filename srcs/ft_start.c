@@ -1,56 +1,17 @@
-#include "philo.h"
-/*
-int	ft_start(t_data *data)
-{
-	int		i;
-	t_philo	*philo;
-	//pthread_t	p;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_start.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/19 15:28:28 by asgaulti          #+#    #+#             */
+/*   Updated: 2021/09/19 15:40:22 by asgaulti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	i = 0;
-	philo = data->philo;
-	
-	// if (philo->philo_nb % 2 == 0)
-	// 	usleep(1000000);
-	{
-		while (i < data->nb)
-		{
-	//printf("i = %d\n", i);
-			if (i % 2 != 0)
-			{
-				if (pthread_create(&(philo[i].philo), NULL, ft_routine1, &(philo[i])))
-            		return (1);
-			}
-			i++;
-		}
-		//puts("che");
-	}
-	i = 0;
-	while (i < data->nb)
-	//while (1)
-	{
-	//printf("i = %d\n", i);
-		if (pthread_create(&(philo[i].philo), NULL, ft_routine1, &(philo[i])))
-            return (1);
-		//printf("i = %d\n", i);
-		i++;
-	}
-	i = 0;
-	while (i < data->nb)
-    //while (1)
-	{    
-		pthread_join(philo[i].philo, NULL);
-        i++;
-	}
-	
-	i = 0;
-    while (i < data->philo_nb)
-        pthread_mutex_destroy(&(data->fork[i]));
-    pthread_mutex_destroy(&(data->write));
-	
-	//ft_exit(data, philo);
-	return (0);
-}
-*/
+#include "philo.h"
+
 // part en infini mais bloque quand ils prennent tous leur fourchette gche
 // dc pb de mutex de merde > resolu avec 1er philo = 1 et non 0 (!!!)
 // autre pb : les philos impairs mangent plein de fois d'affilee au debut > resolu avec reduction du usleep
@@ -64,21 +25,19 @@ void	*ft_routine1(void *philo)
 	i = 0;
 	philo_cp = (t_philo *)philo;
 	data = philo_cp->data;
-	//printf("m = %d\n", philo_cp->data->must_eat);
 	if (philo_cp->philo_nb % 2 == 0)
 		usleep(100);
 	while (1)
 	{
 		ft_time_to_eat(philo_cp, data);
-		// data->count : a mettre en fait dans les philos? des qu'un philo mange, son compteur augmente jusqu a arriver a la limite definie?
 		if (data->must_eat != 0)
 		{
-			//printf("count = %d\n", philo_cp->count);
 			if (philo_cp->count == data->must_eat)
-				break;
+				break ;
 			philo_cp->count++;
 		}
+		//if (philo died) // ou else if?
+			//break;
 	}
-	//ft_exit > join + destroymutex + free?
 	return (NULL);
 }

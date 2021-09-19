@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/19 15:28:03 by asgaulti          #+#    #+#             */
+/*   Updated: 2021/09/19 15:38:41 by asgaulti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	ft_check_data(t_data *data)
@@ -19,7 +31,7 @@ int	ft_check_data(t_data *data)
 		return (1);
 	}
 	else if (data->die < 60 || data->eat < 60 || data->sleep < 60
-			|| data->must_eat < 0)
+		|| data->must_eat < 0)
 	{
 		printf("m = %d\n", data->must_eat);
 		ft_print("Error : wrong parameters\n");

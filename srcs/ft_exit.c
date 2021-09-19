@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/19 15:41:11 by asgaulti          #+#    #+#             */
-/*   Updated: 2021/09/19 15:41:12 by asgaulti         ###   ########.fr       */
+/*   Created: 2021/09/19 15:27:50 by asgaulti          #+#    #+#             */
+/*   Updated: 2021/09/19 15:36:39 by asgaulti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char**av)
+void	ft_exit(t_data *data)
 {
-	t_data	data;
-	int		i;
+	int	i;
 
-	if (!(ac == 5 || ac == 6))
+	i = 0;
+	ft_join_thread(data);
+	while (i < data->nb)
 	{
-		ft_print("Error : wrong number of arguments\n");
-		return (1);
+		pthread_mutex_destroy(data->philo[i].left_f);
+		i++;
 	}
-	if (ft_init_data(&data, av, ac) == 1)
+	pthread_mutex_destroy(data->write);
+	//ft_free(data); // double free (ms pk??)
+}
+
+void	ft_join_thread(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->nb)
 	{
-		ft_free(&data);
-		ft_print("Error init\n");
-		return (1);
+		 pthread_join(data->philo[i].philo_thread, NULL);
+		 i++;
 	}
-	return (0);
 }
