@@ -53,7 +53,7 @@ int	ft_start(t_data *data)
 
 // part en infini mais bloque quand ils prennent tous leur fourchette gche
 // dc pb de mutex de merde > resolu avec 1er philo = 1 et non 0 (!!!)
-// autre pb : les philos impairs mangent plein de fois d'affilee au debut
+// autre pb : les philos impairs mangent plein de fois d'affilee au debut > resolu avec reduction du usleep
 // nouveau pb : si je mets la data->must_eat : segfault automatique (avec ou sans arg[5])
 void	*ft_routine1(void *philo)
 {
@@ -66,7 +66,7 @@ void	*ft_routine1(void *philo)
 	data = philo_cp->data;
 	//printf("m = %d\n", philo_cp->data->must_eat);
 	if (philo_cp->philo_nb % 2 == 0)
-		usleep(6000);
+		usleep(100);
 	while (1)
 	{
 		ft_time_to_eat(philo_cp, data);
