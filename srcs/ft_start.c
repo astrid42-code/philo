@@ -1,5 +1,5 @@
 #include "philo.h"
-
+/*
 int	ft_start(t_data *data)
 {
 	int		i;
@@ -41,20 +41,20 @@ int	ft_start(t_data *data)
 		pthread_join(philo[i].philo, NULL);
         i++;
 	}
-	/*
+	
 	i = 0;
     while (i < data->philo_nb)
         pthread_mutex_destroy(&(data->fork[i]));
     pthread_mutex_destroy(&(data->write));
-	*/
+	
 	//ft_exit(data, philo);
 	return (0);
 }
-
+*/
 // part en infini mais bloque quand ils prennent tous leur fourchette gche
 // dc pb de mutex de merde > resolu avec 1er philo = 1 et non 0 (!!!)
 // autre pb : les philos impairs mangent plein de fois d'affilee au debut > resolu avec reduction du usleep
-// nouveau pb : si je mets la data->must_eat : segfault automatique (avec ou sans arg[5])
+// nouveau pb : si je mets la data->must_eat : segfault automatique (avec ou sans arg[5]) : resolu (init data dans chaue philo!!!)
 void	*ft_routine1(void *philo)
 {
 	int		i;
@@ -70,17 +70,15 @@ void	*ft_routine1(void *philo)
 	while (1)
 	{
 		ft_time_to_eat(philo_cp, data);
-/*		printf("m = %d\n", data->must_eat);
 		// data->count : a mettre en fait dans les philos? des qu'un philo mange, son compteur augmente jusqu a arriver a la limite definie?
 		if (data->must_eat != 0)
 		{
-			printf("count = %d\n", data->count);
-			if (data->count == data->must_eat)
+			//printf("count = %d\n", philo_cp->count);
+			if (philo_cp->count == data->must_eat)
 				break;
-			data->count++;
+			philo_cp->count++;
 		}
-*/	
 	}
-	//ft_time_to_eat(philo_cp, data);
+	//ft_exit > join + destroymutex + free?
 	return (NULL);
 }

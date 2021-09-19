@@ -21,6 +21,7 @@ int	ft_check_data(t_data *data)
 	else if (data->die < 60 || data->eat < 60 || data->sleep < 60
 			|| data->must_eat < 0)
 	{
+		printf("m = %d\n", data->must_eat);
 		ft_print("Error : wrong parameters\n");
 		return (1);
 	}

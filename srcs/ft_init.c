@@ -2,7 +2,6 @@
 
 int	ft_init_data(t_data *data, char **av, int ac)
 {
-	data->count = 1;
 	data->nb = ft_atoi(av[1]) + 1;
 	data->die = ft_atoi(av[2]);
 	data->eat = ft_atoi(av[3]);
@@ -31,18 +30,20 @@ int	ft_init_data(t_data *data, char **av, int ac)
 void	ft_init_philo(t_data *data)
 {
 	int	i;
-	t_philo	*philo_cp;	
+	//t_philo	*philo_cp;
 
 	i = 1;
-	philo_cp = (t_philo *)data;
+	//philo_cp = (t_philo *)data;
 	//gettimeofday(&data->philo[i].phitime, NULL);
 	//printf("nb = %d\n", philo->data->nb);
 	while (i < data->nb)
 	{
+		data->philo[i].data = data;
 		data->philo[i].philo_nb = i;
+		data->philo[i].count = 1;
 		//data->philo[i].phitime = NULL;
 		// if (!data->philo[i]) return (1); ?
-		if (pthread_create(&data->philo[i].philo, NULL, ft_routine1, &data->philo[i]))
+		if (pthread_create(&data->philo[i].philo_thread, NULL, ft_routine1, &data->philo[i]))
             return ;
 		i++;
 	}
@@ -80,7 +81,7 @@ void	ft_join_thread(t_data *data)
 	i = 0;
 	while (i < data->nb)
 	{
-		 pthread_join(data->philo[i].philo, NULL);
+		 pthread_join(data->philo[i].philo_thread, NULL);
 		 i++;
 	}
 }

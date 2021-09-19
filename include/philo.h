@@ -10,18 +10,16 @@
 typedef struct s_philo
 {
 	int				philo_nb; // id du philo
-	// int				l_fork;
-	// int				r_fork;
+	int				count;
 	pthread_mutex_t	*left_f; // mutex a malloc
 	pthread_mutex_t	*right_f; //initialiser au left fork de philo + 1
-	pthread_t		philo;
+	pthread_t		philo_thread;
 	struct timeval	phitime;
 	struct s_data	*data;
 }				t_philo;
 
 typedef struct s_data
 {
-	int				count;
 	int				nb; // nbr total de philos
 	int				die;
 	int				eat;
