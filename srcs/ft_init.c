@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astridgaultier <astridgaultier@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 15:27:35 by asgaulti          #+#    #+#             */
-/*   Updated: 2021/09/19 16:40:44 by asgaulti         ###   ########.fr       */
+/*   Updated: 2021/09/19 22:10:57 by astridgault      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	ft_init_data(t_data *data, char **av, int ac)
 {
+	//data->time = 0;
 	data->nb = ft_atoi(av[1]) + 1;
 	data->die = ft_atoi(av[2]);
 	data->eat = ft_atoi(av[3]);
@@ -42,14 +43,15 @@ int	ft_init_philo(t_data *data)
 	int	i;
 
 	i = 1;
-	gettimeofday(&data->philo[i].phitime, NULL);
+	data->time.tv_sec = 0;
+	gettimeofday(&data->time, NULL);
 	//printf("nb = %d\n", philo->data->nb);
 	while (i < data->nb)
 	{
 		data->philo[i].data = data;
 		data->philo[i].philo_nb = i;
 		data->philo[i].count = 1;
-		//data->philo[i].phitime = NULL; > comment initialiser cette variable?
+		data->philo[i].phitime = data->time; //> comment initialiser cette variable a zero?
 		// if (!data->philo[i]) return (1); ?
 		if (pthread_create(&data->philo[i].philo_thread, NULL, ft_routine, &data->philo[i]))
             return (1);

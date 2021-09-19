@@ -1,75 +1,36 @@
-philo 1 has taken a (left) fork
-philo 1 has taken a (right) fork
-philo 1 is eating
-philo 3 has taken a (left) fork
-philo 3 has taken a (right) fork
-philo 3 is eating
-philo 2 has taken a (left) fork
-philo 2 has taken a (right) fork
-philo 2 is eating
-philo 5 has taken a (left) fork
-philo 5 has taken a (right) fork
-philo 5 is eating
-philo 4 has taken a (left) fork
-philo 4 has taken a (right) fork
-philo 4 is eating
-philo 1 has taken a (left) fork
-philo 2 has taken a (left) fork
-philo 3 has taken a (left) fork
-philo 5 has taken a (left) fork
-philo 5 has taken a (right) fork
-philo 5 is eating
-philo 3 has taken a (right) fork
-philo 3 is eating
-philo 2 has taken a (right) fork
-philo 2 is eating
-philo 1 has taken a (right) fork
-philo 1 is eating
-philo 4 has taken a (left) fork
-philo 4 has taken a (right) fork
-philo 4 is eating
-philo 5 has taken a (left) fork
-philo 2 has taken a (left) fork
-philo 3 has taken a (left) fork
-philo 3 has taken a (right) fork
-philo 3 is eating
-philo 2 has taken a (right) fork
-philo 1 has taken a (left) fork
-philo 2 is eating
-philo 5 has taken a (right) fork
-philo 5 is eating
-philo 1 has taken a (right) fork
-philo 1 is eating
-philo 4 has taken a (left) fork
-philo 4 has taken a (right) fork
-philo 4 is eating
-philo 3 has taken a (left) fork
-philo 3 has taken a (right) fork
-philo 3 is eating
-philo 5 has taken a (left) fork
-philo 5 has taken a (right) fork
-philo 5 is eating
-philo 2 has taken a (left) fork
-philo 2 has taken a (right) fork
-philo 2 is eating
-philo 1 has taken a (left) fork
-philo 1 has taken a (right) fork
-philo 1 is eating
-philo 4 has taken a (left) fork
-philo 4 has taken a (right) fork
-philo 4 is eating
-philo 3 has taken a (left) fork
-philo 2 has taken a (left) fork
-philo 5 has taken a (left) fork
-philo 1 has taken a (left) fork
-philo 3 has taken a (right) fork
-philo 3 is eating
-philo 5 has taken a (right) fork
-philo 5 is eating
-philo 4 has taken a (left) fork
-philo 2 has taken a (right) fork
-philo 2 is eating
-philo 4 has taken a (right) fork
-philo 4 is eating
-philo 1 has taken a (right) fork
-philo 1 is eating
+1632082275 philo 1 has taken a (left) fork
+1632082275 philo 1 has taken a (right) fork
+1632082275 philo 1 is eating
+1632082275 philo 3 has taken a (left) fork
+1632082275 philo 3 has taken a (right) fork
+1632082275 philo 3 is eating
+1632082275 philo 1 has taken a (left) fork
+1632082275 philo 1 has taken a (right) fork
+1632082275 philo 1 is eating
+1632082275 philo 2 has taken a (left) fork
+1632082275 philo 2 has taken a (right) fork
+1632082275 philo 2 is eating
+1632082275 philo 3 has taken a (left) fork
+1632082275 philo 3 has taken a (right) fork
+1632082275 philo 3 is eating
+1632082275 philo 4 has taken a (left) fork
+1632082275 philo 4 has taken a (right) fork
+1632082275 philo 4 is eating
+1632082275 philo 1 has taken a (left) fork
+1632082275 philo 1 has taken a (right) fork
+1632082275 philo 1 is eating
+1632082275 philo 2 has taken a (left) fork
+1632082275 philo 2 has taken a (right) fork
+1632082275 philo 2 is eating
+1632082275 philo 3 has taken a (left) fork
+1632082275 philo 3 has taken a (right) fork
+1632082275 philo 3 is eating
+1632082275 philo 4 has taken a (left) fork
+1632082275 philo 4 has taken a (right) fork
+1632082275 philo 4 is eating
+1632082275 philo 2 has taken a (left) fork
+1632082275 philo 2 has taken a (right) fork
+1632082275 philo 2 is eating
+1632082275 philo 4 has taken a (left) fork
+1632082275 philo 4 has taken a (right) fork
+1632082275 philo 4 is eating

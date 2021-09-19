@@ -7,6 +7,8 @@
 # include <pthread.h>
 # include <sys/time.h>
 
+struct	timeval;
+
 typedef struct s_philo
 {
 	int				philo_nb; // id du philo
@@ -25,6 +27,7 @@ typedef struct s_data
 	int				eat;
 	int				sleep;
 	int				must_eat;
+	struct timeval	time;
 	pthread_mutex_t	*write; // malloc 1 fois ( tjrs le meme ptr pour pvr ecrire safe)
 	t_philo			*philo;
 }				t_data;
