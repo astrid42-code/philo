@@ -6,7 +6,7 @@
 /*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 15:28:28 by asgaulti          #+#    #+#             */
-/*   Updated: 2021/09/19 15:40:22 by asgaulti         ###   ########.fr       */
+/*   Updated: 2021/09/19 16:26:22 by asgaulti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // dc pb de mutex de merde > resolu avec 1er philo = 1 et non 0 (!!!)
 // autre pb : les philos impairs mangent plein de fois d'affilee au debut > resolu avec reduction du usleep
 // nouveau pb : si je mets la data->must_eat : segfault automatique (avec ou sans arg[5]) : resolu (init data dans chaue philo!!!)
-void	*ft_routine1(void *philo)
+void	*ft_routine(void *philo)
 {
 	int		i;
 	t_philo	*philo_cp;

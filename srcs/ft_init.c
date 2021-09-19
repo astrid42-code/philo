@@ -6,7 +6,7 @@
 /*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 15:27:35 by asgaulti          #+#    #+#             */
-/*   Updated: 2021/09/19 15:40:30 by asgaulti         ###   ########.fr       */
+/*   Updated: 2021/09/19 16:40:44 by asgaulti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,35 +30,32 @@ int	ft_init_data(t_data *data, char **av, int ac)
 	data->philo = malloc(sizeof(t_philo) * data->nb);
 	if (!data->philo)
 		return (1);
-	// if (ft_init_philo(data) == 1)
-	// 	return (1);
 	if (ft_init_mutex(data) == 1)
 		return (1);
-	//puts ("che");
-	ft_init_philo(data);
+	if (ft_init_philo(data) == 1)
+		return (1);
 	return (0);
 }
 
-void	ft_init_philo(t_data *data)
+int	ft_init_philo(t_data *data)
 {
 	int	i;
 
 	i = 1;
-	//gettimeofday(&data->philo[i].phitime, NULL);
+	gettimeofday(&data->philo[i].phitime, NULL);
 	//printf("nb = %d\n", philo->data->nb);
 	while (i < data->nb)
 	{
 		data->philo[i].data = data;
 		data->philo[i].philo_nb = i;
 		data->philo[i].count = 1;
-		//data->philo[i].phitime = NULL;
+		//data->philo[i].phitime = NULL; > comment initialiser cette variable?
 		// if (!data->philo[i]) return (1); ?
-		if (pthread_create(&data->philo[i].philo_thread, NULL, ft_routine1, &data->philo[i]))
-            return ;
+		if (pthread_create(&data->philo[i].philo_thread, NULL, ft_routine, &data->philo[i]))
+            return (1);
 		i++;
 	}
-	i = 0;
-	ft_exit(data); // ou dans routine??
+	return (0);
 }
 
 int	ft_init_mutex(t_data *data)

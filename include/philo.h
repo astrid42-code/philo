@@ -11,8 +11,8 @@ typedef struct s_philo
 {
 	int				philo_nb; // id du philo
 	int				count;
-	pthread_mutex_t	*left_f; // mutex a malloc
-	pthread_mutex_t	*right_f; //initialiser au left fork de philo + 1
+	pthread_mutex_t	*left_f;
+	pthread_mutex_t	*right_f;
 	pthread_t		philo_thread;
 	struct timeval	phitime;
 	struct s_data	*data;
@@ -33,14 +33,14 @@ int		main(int ac, char **av);
 int		ft_check_arg(int ac, char **av, t_data *data);
 int		ft_check_data(t_data *data);
 int		ft_start(t_data *data);
-void	*ft_routine1(void *philo);
+void	*ft_routine(void *philo);
 void	*ft_time_to_sleep(void *arg);
 void	*ft_time_to_think(void *arg);
 void	*ft_time_to_eat(t_philo *philo, t_data *data);
 void	ft_must_eat(t_data *data);
 
 // init / exit
-void	ft_init_philo(t_data *data);
+int		ft_init_philo(t_data *data);
 int		ft_init_data(t_data *data, char **av, int ac);
 int		ft_init_mutex(t_data *data);
 void	ft_init_mutex_rfork(t_data *data);
