@@ -7,7 +7,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-struct	timeval;
+typedef struct timeval	t_timeval;
 
 typedef struct s_philo
 {
@@ -16,7 +16,10 @@ typedef struct s_philo
 	pthread_mutex_t	*left_f;
 	pthread_mutex_t	*right_f;
 	pthread_t		philo_thread;
-	struct timeval	phitime;
+	t_timeval		current_time;
+	t_timeval		start_eat;
+	struct timeval	start_think;
+	struct timeval	start_sleep;
 	struct s_data	*data;
 }				t_philo;
 
@@ -27,8 +30,8 @@ typedef struct s_data
 	int				eat;
 	int				sleep;
 	int				must_eat;
-	struct timeval	time;
-	pthread_mutex_t	*write; // malloc 1 fois ( tjrs le meme ptr pour pvr ecrire safe)
+	t_timeval		start;
+	pthread_mutex_t	*write;
 	t_philo			*philo;
 }				t_data;
 
@@ -47,6 +50,7 @@ int		ft_init_philo(t_data *data);
 int		ft_init_data(t_data *data, char **av, int ac);
 int		ft_init_mutex(t_data *data);
 void	ft_init_mutex_rfork(t_data *data);
+time_t	ft_gettime(t_timeval *current_time, t_timeval *start);
 void	ft_exit(t_data *data);
 void	ft_join_thread(t_data *data);
 

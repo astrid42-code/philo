@@ -6,7 +6,7 @@
 /*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 15:27:50 by asgaulti          #+#    #+#             */
-/*   Updated: 2021/09/19 15:36:39 by asgaulti         ###   ########.fr       */
+/*   Updated: 2021/09/20 13:32:38 by asgaulti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_exit(t_data *data)
 		i++;
 	}
 	pthread_mutex_destroy(data->write);
-	//ft_free(data); // double free (ms pk??)
 }
 
 void	ft_join_thread(t_data *data)
