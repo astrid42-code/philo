@@ -6,6 +6,7 @@
 # include <stdio.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <string.h>
 
 typedef struct timeval	t_timeval;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astridgaultier <astridgaultier@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 15:27:35 by asgaulti          #+#    #+#             */
-/*   Updated: 2021/09/20 17:56:20 by asgaulti         ###   ########.fr       */
+/*   Updated: 2021/09/20 20:50:26 by astridgault      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	ft_init_data(t_data *data, char **av, int ac)
 		return (1);
 	}
 	data->philo = malloc(sizeof(t_philo) * data->nb);
+	memset(data->philo, 0, sizeof(t_philo) * data->nb);
 	if (!data->philo)
 		return (1);
 	if (ft_init_mutex(data) == 1)
@@ -49,13 +50,13 @@ int	ft_init_philo(t_data *data)
 	// initialiser le(s) t_timeval (au moins le start_eat) pour chaque philo
 	// et quand on lance l'action faire le ft_gettime avec le current_time actuel
 	// (celui ou en est le dernier philo?) et la valeur du eat/die/sleep...)
-	//ft_gettime();
 	while (i < data->nb)
 	{
 		data->philo[i].data = data;
 		data->philo[i].philo_nb = i;
 		data->philo[i].count = 1;
 		data->philo[i].start_eat = data->start;
+	ft_gettime(&data->philo[i].current_time, &data->philo[i].start_eat);
 		// if (!data->philo[i]) return (1); ?
 		if (pthread_create(&data->philo[i].philo_thread, NULL, ft_routine, &data->philo[i]))
             return (1);
@@ -103,12 +104,12 @@ void	ft_init_mutex_rfork(t_data *data)
 
 time_t	ft_gettime(t_timeval *current_time, t_timeval *start)
 {
-	time_t			start;
+	time_t	time;
 
 	gettimeofday(current_time, NULL);
-	start = (time_t)(((current_time->tv_sec * 0.001)
+	time = (long int)(((current_time->tv_sec * 0.001)
 				+ (current_time->tv_usec * 1000))
 			- ((start->tv_sec * 0.001) + (start->tv_sec * 1000)));
-	printf("start = %ld\n", start);
-	return (start);
+	printf("start = %ld\n", time);
+	return (time);
 }
