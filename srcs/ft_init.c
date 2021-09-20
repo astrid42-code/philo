@@ -6,7 +6,7 @@
 /*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 15:27:35 by asgaulti          #+#    #+#             */
-/*   Updated: 2021/09/20 16:20:12 by asgaulti         ###   ########.fr       */
+/*   Updated: 2021/09/20 17:56:20 by asgaulti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	ft_init_data(t_data *data, char **av, int ac)
 {
 	//data->time = 0;
 	data->nb = ft_atoi(av[1]) + 1;
-	data->die = ft_atoi(av[2]) * 1000;
-	data->eat = ft_atoi(av[3]) * 1000;
-	data->sleep = ft_atoi(av[4]) * 1000;
+	data->die = ft_atoi(av[2]);
+	data->eat = ft_atoi(av[3]);
+	data->sleep = ft_atoi(av[4]);
 	if (ac == 6)
 		data->must_eat = ft_atoi(av[5]);
 	else
@@ -104,11 +104,11 @@ void	ft_init_mutex_rfork(t_data *data)
 time_t	ft_gettime(t_timeval *current_time, t_timeval *start)
 {
 	time_t			start;
-	struct timeval	timeval;
 
 	gettimeofday(current_time, NULL);
-	start = ((current_time->tv_sec * 1000000) + current_time->tv_usec)
-		- ((start->tv_sec * 1000000) + start->tv_sec);
+	start = (time_t)(((current_time->tv_sec * 0.001)
+				+ (current_time->tv_usec * 1000))
+			- ((start->tv_sec * 0.001) + (start->tv_sec * 1000)));
 	printf("start = %ld\n", start);
 	return (start);
 }
