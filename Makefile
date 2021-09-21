@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astridgaultier <astridgaultier@student.    +#+  +:+       +#+         #
+#    By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/19 15:27:57 by asgaulti          #+#    #+#              #
-#    Updated: 2021/09/19 22:00:30 by astridgault      ###   ########.fr        #
+#    Updated: 2021/09/21 16:28:43 by asgaulti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ OBJS	=	${addprefix ${PATH_SRCS}, ${SRCS:.c=.o}}
 CC		=	clang
 #clang-9 
 RM		=	rm -f
-CFLAGS	=	-Wall -Werror -Wextra #-g3 -fsanitize=address
+CFLAGS	=	-Wall -Werror -Wextra -g3 -fsanitize=address
 
 
 INCL	=	include

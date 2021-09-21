@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astridgaultier <astridgaultier@student.    +#+  +:+       +#+        */
+/*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 15:27:35 by asgaulti          #+#    #+#             */
-/*   Updated: 2021/09/20 20:50:26 by astridgault      ###   ########.fr       */
+/*   Updated: 2021/09/21 16:44:08 by asgaulti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_init_philo(t_data *data)
 	int	i;
 
 	i = 1;
-	gettimeofday(&data->start, NULL);
+	gettimeofday(&data->start_time, NULL);
 	// initialiser le(s) t_timeval (au moins le start_eat) pour chaque philo
 	// et quand on lance l'action faire le ft_gettime avec le current_time actuel
 	// (celui ou en est le dernier philo?) et la valeur du eat/die/sleep...)
@@ -55,16 +55,39 @@ int	ft_init_philo(t_data *data)
 		data->philo[i].data = data;
 		data->philo[i].philo_nb = i;
 		data->philo[i].count = 1;
-		data->philo[i].start_eat = data->start;
-	ft_gettime(&data->philo[i].current_time, &data->philo[i].start_eat);
+		//data->start_time = data->start_time;
+		//data->philo[i].current_time = data->start;
+		data->philo[i].start_eat = data->start_time;
+		data->philo[i].last_eat = ft_gettime(&data->start_time, &data->philo[i].start_eat);
+		// recuperer dans un unsigned long plutot que dqns start eat.tv_sec
 		// if (!data->philo[i]) return (1); ?
 		if (pthread_create(&data->philo[i].philo_thread, NULL, ft_routine, &data->philo[i]))
             return (1);
 		i++;
 	}
+	while (1)
+	{
+		i = 0;
+		while (i < data->philo[i].philo_nb)
+		{
+			if (data->philo[i].life == 1)
+				ft_exit(data);
+			i++;
+			if (i == data->philo->philo_nb)
+				i = 0;
+		}
+	}
+	//boucler sur les philos en mettant la condition :
+	// si philo[i]->last_eat - data->start_time (tempps actuel - dernier repas) (ou plutot le dernier en cours du philo) > timetodie alors life == 1
 	return (0);
 }
 
+// pt de depart : timestamp (ie current)
+// a chaque fois qu ils mangent tu recuperes le timestamp
+// ensuite tu soustrais le start_time (on ne le touche jms) du last_eat
+
+// si le last_eat - start_time est > au time_to_die alos le philo est mort
+// dans ce cas variable life = 1 (au lieu de 0) et dire aux philos que si life == 1 > ca s arrete (ft_exit)
 int	ft_init_mutex(t_data *data)
 {
 	int	i;
@@ -102,14 +125,15 @@ void	ft_init_mutex_rfork(t_data *data)
 	}
 }
 
-time_t	ft_gettime(t_timeval *current_time, t_timeval *start)
+unsigned long	ft_gettime(t_timeval *start_time, t_timeval *start_eat)
 {
-	time_t	time;
+	unsigned long	time;
 
-	gettimeofday(current_time, NULL);
-	time = (long int)(((current_time->tv_sec * 0.001)
-				+ (current_time->tv_usec * 1000))
-			- ((start->tv_sec * 0.001) + (start->tv_sec * 1000)));
-	printf("start = %ld\n", time);
+	//gettimeofday(current_time, NULL);
+	//	printf("start = %ld %d\n start = %ld %d\n", start_time->tv_sec, start_time->tv_usec, start_eat->tv_sec, start_eat->tv_usec);
+	time = (unsigned long)(((start_time->tv_sec * 1000)
+				+ (start_time->tv_usec * 0.001))
+			- ((start_eat->tv_sec * 1000) + (start_eat->tv_usec * 0.001)));
+	//printf("time = %ld\n", time);
 	return (time);
 }

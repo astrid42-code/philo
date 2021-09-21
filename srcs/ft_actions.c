@@ -6,51 +6,21 @@
 /*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 15:27:43 by asgaulti          #+#    #+#             */
-/*   Updated: 2021/09/19 15:27:44 by asgaulti         ###   ########.fr       */
+/*   Updated: 2021/09/21 11:44:23 by asgaulti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*ft_time_to_sleep(void *mutex)
+void	*ft_time_to_sleep(t_philo *philo, t_data *data)
 {
-	int	*iptr;
-	int	i;
-
-	iptr = malloc(sizeof(int));
-	*iptr = 15;
-	i = 0;
-	while (*iptr > i)
-	{
-		pthread_mutex_lock(mutex);
-		ft_print("Philo is sleeping\n");
-		printf("i = %d\n", i);
-		pthread_mutex_unlock(mutex);
-		usleep (100000);
-		i++;
-	}
-	free (iptr);
+	ft_print_action(philo, data, "is sleeping");
 	return (NULL);
 }
 
-void	*ft_time_to_think(void *mutex)
+void	*ft_time_to_think(t_philo *philo, t_data *data)
 {
-	int	*jptr;
-	int	j;
-
-	jptr = malloc(sizeof(int));
-	*jptr = 10;
-	j = 0;
-	while (*jptr > j)
-	{
-		pthread_mutex_lock(mutex);
-		ft_print("Philo is thinking\n");
-		printf("j = %d\n", j);
-		pthread_mutex_unlock(mutex);
-		usleep (100000);
-		j++;
-	}
-	free (jptr);
+	ft_print_action(philo, data, "is thinking");
 	return (NULL);
 }
 
