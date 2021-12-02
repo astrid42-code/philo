@@ -6,7 +6,7 @@
 /*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 15:27:43 by asgaulti          #+#    #+#             */
-/*   Updated: 2021/09/22 16:28:48 by asgaulti         ###   ########.fr       */
+/*   Updated: 2021/12/02 12:24:31 by asgaulti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,4 @@ void	*ft_time_to_eat(t_philo *philo, t_data *data)
 	pthread_mutex_unlock(philo->right_f);
 	usleep(100);
 	return (NULL);
-}
-
-void	ft_usleep(t_data *data, t_philo *philo)
-{	
-	unsigned long	time;
-
-	gettimeofday(&data->start_eat, NULL);
-	time = ft_gettime(&data->start_time, &philo->philo_start_eat);
-	while (time < (unsigned long)data->eat)
-		usleep(500);
 }

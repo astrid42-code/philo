@@ -6,7 +6,7 @@
 /*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 15:28:07 by asgaulti          #+#    #+#             */
-/*   Updated: 2021/09/19 15:28:08 by asgaulti         ###   ########.fr       */
+/*   Updated: 2021/12/02 10:15:53 by asgaulti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,6 @@ int	ft_atoi(char *str)
 	return (result * sign);
 }
 
-void	ft_free(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->nb)
-	{
-		free(data->philo);
-		i++;
-	}
-}
-
 int	ft_nbrsize(int nbr)
 {
 	int	count;
@@ -78,4 +66,19 @@ int	ft_nbrsize(int nbr)
 		count++;
 	}
 	return (count);
+}
+
+int	ft_print(char *str, int ret)
+{
+	write(1, str, ft_strlen(str));
+	return (ret);
+}
+
+void	ft_print_action(t_philo *philo, t_data *data, char *str)
+{
+	(void)data;
+	pthread_mutex_lock(data->write);
+	printf("%ld ", data->last_eat);
+	printf("philo %d %s\n", philo->philo_nb, str);
+	pthread_mutex_unlock(data->write);
 }

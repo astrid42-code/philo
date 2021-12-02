@@ -6,7 +6,7 @@
 /*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 15:27:35 by asgaulti          #+#    #+#             */
-/*   Updated: 2021/09/22 16:16:21 by asgaulti         ###   ########.fr       */
+/*   Updated: 2021/12/02 12:07:45 by asgaulti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@
 // l'important est de mettre tout au meme niveau (sec? microsec?)
 int	ft_init_data(t_data *data, char **av, int ac)
 {
-	//data->time = 0;
 	memset(data, 0, sizeof(t_data));
-	data->nb = ft_atoi(av[1]) + 1;
+	data->nb = ft_atoi(av[1]);
 	data->die = ft_atoi(av[2]);
 	data->eat = ft_atoi(av[3]);
 	data->sleep = ft_atoi(av[4]);
@@ -27,21 +26,18 @@ int	ft_init_data(t_data *data, char **av, int ac)
 	else
 		data->must_eat = 0;
 	if (ft_check_arg(ac, av, data) == 1)
-	{
-		// fct pour free l struct (si malloc)
 		return (1);
-	}
-	data->philo = malloc(sizeof(t_philo) * data->nb);
-	memset(data->philo, 0, sizeof(t_philo) * data->nb);
-	if (!data->philo)
-		return (1);
-	if (ft_init_mutex(data) == 1)
-		return (1);
-	if (ft_init_philo(data) == 1)
-		return (1);
+	// data->philo = malloc(sizeof(t_philo) * data->nb);
+	// memset(data->philo, 0, sizeof(t_philo) * data->nb);
+	// if (!data->philo)
+	// 	return (1);
+	// if (ft_init_mutex(data) == 1)
+	// 	return (1);
+	// if (ft_init_philo(data) == 1)
+	// 	return (1);
 	return (0);
 }
-
+/*
 int	ft_init_philo(t_data *data)
 {
 	int	i;
@@ -99,10 +95,7 @@ int	ft_init_mutex(t_data *data)
 	{
 		data->philo[i].left_f = malloc(sizeof(pthread_mutex_t));
 		if (pthread_mutex_init(data->philo[i].left_f, NULL))
-		{
-			ft_print("Error in mutex\n");
-			return (1);
-		}
+			return (ft_print("Error in mutex\n", 1));
 		i++;
 	}
 	ft_init_mutex_rfork(data);
@@ -110,10 +103,7 @@ int	ft_init_mutex(t_data *data)
 	data->dead = malloc(sizeof(pthread_mutex_t));
 	if (pthread_mutex_init(data->write, NULL)
 		|| pthread_mutex_init(data->dead, NULL))
-	{
-		ft_print("Error in mutex\n");
-		return (1);
-	}
+		return (ft_print("Error in mutex\n", 1));
 	return (0);
 }
 
@@ -133,10 +123,11 @@ unsigned long	ft_gettime(t_timeval *start_time, t_timeval *start_eat)
 {
 	unsigned long	time;
 
-	printf("start_time = %ld %d\n start_eat = %ld %d\n", start_time->tv_sec, start_time->tv_usec, start_eat->tv_sec, start_eat->tv_usec);
+	//printf("start_time = %ld %d\n start_eat = %ld %d\n", start_time->tv_sec, start_time->tv_usec, start_eat->tv_sec, start_eat->tv_usec);
 	time = (unsigned long)(((start_eat->tv_sec * 1000)
 				+ (start_eat->tv_usec * 0.001))
 			- ((start_time->tv_sec * 1000) + (start_time->tv_usec * 0.001)));
-	printf("time = %ld\n", time);
+	//printf("time = %ld\n", time);
 	return (time);
 }
+*/

@@ -17,7 +17,8 @@ typedef struct s_philo
 	int				life;
 	pthread_mutex_t	*left_f;
 	pthread_mutex_t	*right_f;
-	pthread_t		philo_thread;
+	pthread_t		one;
+	pthread_t		philo_thread; // ou * ??
 	t_timeval		philo_start_eat;
 	t_timeval		last_meal;
 	struct timeval	start_think;
@@ -44,31 +45,34 @@ typedef struct s_data
 int				main(int ac, char **av);
 int				ft_check_arg(int ac, char **av, t_data *data);
 int				ft_check_data(t_data *data);
-int				ft_start(t_data *data);
-void			*ft_routine(void *philo);
-int				ft_check_death(t_philo *philo, t_data *data);
-int				ft_check_eat(t_philo *philo);
-void			*ft_time_to_eat(t_philo *philo, t_data *data);
-void			*ft_time_to_think(t_philo *philo, t_data *data);
-void			*ft_time_to_sleep(t_philo *philo, t_data *data);
-void			ft_must_eat(t_data *data);
-void			ft_usleep(t_data *data, t_philo *philo);
+void			*ft_routine_one(void *one);
+// int				ft_start(t_data *data);
+// void			*ft_routine(void *philo);
+// int				ft_check_death(t_philo *philo, t_data *data);
+// int				ft_check_eat(t_philo *philo);
+// void			*ft_time_to_eat(t_philo *philo, t_data *data);
+// void			*ft_time_to_think(t_philo *philo, t_data *data);
+// void			*ft_time_to_sleep(t_philo *philo, t_data *data);
+// void			ft_must_eat(t_data *data);
+// void			ft_usleep(t_data *data, t_philo *philo);
 
 // init / exit
-int				ft_init_philo(t_data *data);
 int				ft_init_data(t_data *data, char **av, int ac);
-int				ft_init_mutex(t_data *data);
-void			ft_init_mutex_rfork(t_data *data);
-unsigned long	ft_gettime(t_timeval *current_time, t_timeval *start);
-void			ft_exit(t_data *data);
+// int				ft_init_philo(t_data *data);
+// int				ft_init_mutex(t_data *data);
+// void			ft_init_mutex_rfork(t_data *data);
+// unsigned long	ft_gettime(t_timeval *current_time, t_timeval *start);
+// void			ft_exit(t_data *data);
 void			ft_join_thread(t_data *data);
 
-// utils
-void			ft_print(char *str);
+// print
+int				ft_print(char *str, int ret);
 void			ft_print_action(t_philo *philo, t_data *data, char *str);
+
+// utils
 int				ft_strlen(char *str);
 int				ft_atoi(char *str);
 void			ft_free(t_data *data);
-int				ft_nbrsize(int nbr);
+//int				ft_nbrsize(int nbr);
 
 #endif
